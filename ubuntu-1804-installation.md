@@ -6,20 +6,26 @@
 # Update repo and packages
 sudo apt update && sudo apt -y dist-upgrade
 
-# Docker
+# Install Docker
 sudo apt install -y docker docker-compose
+sudo groupadd docker
+sudo usermod -aG docker $USER
 
-# Python 3
+# Install Python 3 and pip3
 sudo apt install -y python3 python3-pip
 
-# Cron
+# Install Cron
 sudo apt install -y cron
 
-# wkhtmltopdf
-sudo apt install -y libssl1.0-dev xfonts-75dpi fonts-cantarell
+# Install MariaDB client
+sudo apt install mariadb-client
 ```
 
 ## NodeJS LTS using NVM
+
+With nvm, node is installed and used from local user directory and needs no root access.
+Also dev machine may need different node versions for different projects.
+Use nvm to install, manage and switch node versions for development.
 
 ```sh
 # Install nvm
@@ -36,6 +42,16 @@ npm install -g yarn
 ## Install wkhtmltopdf
 
 ```sh
+# install wkhtmltopdf dependencies
+sudo apt install -y \
+    xfonts-base \
+    xfonts-75dpi \
+    fonts-cantarell \
+    libssl1.0-dev \
+    libxrender1 \
+    libjpeg-turbo8
+
+# Download, install and remove deb package
 wget -c https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb
 sudo dpkg -i wkhtmltox_0.12.5-1.bionic_amd64.deb && rm wkhtmltox_0.12.5-1.bionic_amd64.deb
 ```
@@ -47,7 +63,7 @@ sudo dpkg -i wkhtmltox_0.12.5-1.bionic_amd64.deb && rm wkhtmltox_0.12.5-1.bionic
 git clone https://github.com/frappe/bench ~/.bench
 pip3 install --user -e ~/.bench
 
-# set local path for user
+# set local path for user. (needed for vanilla ubuntu 18.04 LTS)
 echo -e "export PATH=\$HOME/.local/bin:\$PATH" >> ~/.bashrc
 source ~/.bashrc
 ```
@@ -77,7 +93,7 @@ cp env-example .env
 docker-compose --project-name bench up
 ```
 
-## Setup bench procfile for using docker services
+## Setup bench for using docker services
 
 ```sh
 # For dockerized mariadb
@@ -87,10 +103,10 @@ bench config set-common-config --config db_host 127.0.0.1
 bench config set-common-config --config db_host 127.0.0.1
 
 # setup procfile, if not already created
-bench setup procfile
+# bench setup procfile
 
-# To use Dockerized redis, comment first 3 lines of Procfile
-sed -i '2,4 s/^/#/' Procfile
+# To use Dockerized redis, comment first 3 redis lines of Procfile
+sed -i '1,3 s/^/#/' Procfile
 ```
 
 ## Start the bench
