@@ -3,22 +3,27 @@
 ## Install package dependencies
 
 ```sh
-sudo apt install \
-    docker \
-    docker-compose \
-    python3 \
-    python3-pip \
-    cron \
-    libssl1.0-dev \
-    xfonts-75dpi
-    fonts-cantarell
+# Update repo and packages
+sudo apt update && sudo apt -y dist-upgrade
+
+# Docker
+sudo apt install -y docker docker-compose
+
+# Python 3
+sudo apt install -y python3 python3-pip
+
+# Cron
+sudo apt install -y cron
+
+# wkhtmltopdf
+sudo apt install -y libssl1.0-dev xfonts-75dpi fonts-cantarell
 ```
 
 ## NodeJS LTS using NVM
 
 ```sh
 # Install nvm
-wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 source ~/.bashrc
 
 # Install node lts
@@ -63,13 +68,13 @@ bench init \
 ```sh
 # Clone repo with docker-compose.yml
 cd $HOME
-git clone <repo> && cd repo
+git clone https://gitlab.com/revant.one/erpnext_developer.git && cd erpnext_developer
 
 # Copy example .env
 cp env-example .env
 
 # Start services
-docker-compose up
+docker-compose --project-name bench up
 ```
 
 ## Setup bench procfile for using docker services
