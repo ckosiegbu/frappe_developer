@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  redis-socketio:
+    image: redis:5-alpine
+    volumes:
+      - ./conf/redis-conf.d:/etc/conf.d
+      - redis-socketio-vol:/data
+    command: ["redis-server","/etc/conf.d/redis_socketio.conf"]
+    ports:
+      - "12000:12000"
+
+  redis-queue:
+    image: redis:5-alpine
+    volumes:
+      - ./conf/redis-conf.d:/etc/conf.d
+      - redis-queue-vol:/data
+    command: ["redis-server","/etc/conf.d/redis_queue.conf"]
+    ports:
+      - "11000:11000"
+
+  redis-cache:
+    image: redis:5-alpine
+    volumes:
+      - ./conf/redis-conf.d:/etc/conf.d
+      - redis-cache-vol:/data
+    command: ["redis-server","/etc/conf.d/redis_cache.conf"]
+    ports:
+      - "13000:13000"
+
+  mariadb:
+    image: mariadb:10.3
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - ./conf/mariadb-conf.d:/etc/mysql/conf.d
+      - mariadb-vol:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+volumes:
+  mariadb-vol:
+  redis-socketio-vol:
+  redis-queue-vol:
+  redis-cache-vol:
