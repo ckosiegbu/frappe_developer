@@ -10,6 +10,8 @@ sudo apt update && sudo apt -y dist-upgrade
 sudo apt install -y docker docker-compose
 sudo groupadd docker
 sudo usermod -aG docker $USER
+# After addition of user logout
+# or if setup is on VM reboot the VM
 
 # Install Python 3 and pip3
 sudo apt install -y python3 python3-pip
@@ -76,7 +78,7 @@ source ~/.bashrc
 bench init \
     --python python3 \
     --skip-redis-config-generation \
-    frappe-bench
+    frappe-bench-01
 ```
 
 ## Start docker based services
@@ -95,12 +97,14 @@ docker-compose --project-name bench up
 
 ## Setup bench for using docker services
 
+Note: execute command from bench directory e.g. `frappe-bench-01`
+
 ```sh
 # For dockerized mariadb
 bench config set-common-config --config db_host 127.0.0.1
 
 # For developer mode
-bench config set-common-config --config db_host 127.0.0.1
+bench config set-common-config --config developer_mode 1
 
 # setup procfile, if not already created
 # bench setup procfile
