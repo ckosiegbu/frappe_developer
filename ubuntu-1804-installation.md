@@ -130,7 +130,7 @@ bench init \
 ```sh
 # Clone repo with docker-compose.yml
 cd $HOME
-git clone https://gitlab.com/revant.one/erpnext_developer.git && cd erpnext_developer
+git clone https://github.com/ckosiegbu/frappe_developer/frappe_developer.git && cd frappe_developer
 
 # Copy example .env
 cp env-example .env
