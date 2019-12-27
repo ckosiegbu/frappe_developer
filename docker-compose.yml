@@ -38,33 +38,8 @@ services:
     ports:
       - "3306:3306"
 
-  erpnext:
-    image: castlecraft/erpnext-dev:edge
-    links:
-      - redis-cache
-      - redis-queue
-      - redis-socketio
-      - mariadb
-    depends_on:
-      - mariadb
-      - redis-cache
-      - redis-queue
-      - redis-socketio
-    environment:
-      - MARIADB_HOST=mariadb
-      - REDIS_CACHE=redis://redis-cache:13000
-      - REDIS_QUEUE=redis://redis-queue:11000
-      - REDIS_SOCKETIO=redis://redis-socketio:12000
-    ports:
-      - "8000:8000" # Webserver Port
-      - "9000:9000" # Socketio Port
-      - "6787:6787" # File Watcher Port
-    volumes:
-      - erpnext-dev-vol:/home/frappe/frappe-bench
-
 volumes:
   mariadb-vol:
   redis-socketio-vol:
   redis-queue-vol:
   redis-cache-vol:
-  erpnext-dev-vol:
