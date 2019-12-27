@@ -1,6 +1,6 @@
-# Install ERPNext development Environment
+# Install Frappe development Environment
 
-## Install package dependencies
+## Install package dependencies Ubuntu
 
 ```sh
 # Update repo and packages
@@ -23,7 +23,7 @@ sudo apt install -y cron
 sudo apt install mariadb-client
 ```
 
-## NodeJS LTS using NVM
+### NodeJS LTS using NVM
 
 With nvm, node is installed and used from local user directory and needs no root access.
 Also dev machine may need different node versions for different projects.
@@ -41,7 +41,7 @@ nvm install --lts
 npm install -g yarn
 ```
 
-## Install wkhtmltopdf
+### Install wkhtmltopdf
 
 ```sh
 # install wkhtmltopdf dependencies
@@ -58,16 +58,52 @@ wget -c https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkht
 sudo dpkg -i wkhtmltox_0.12.5-1.bionic_amd64.deb && rm wkhtmltox_0.12.5-1.bionic_amd64.deb
 ```
 
+## Install package dependencies MACOS
+
+```sh
+# Install Docker
+Install docker by following the instructions at the following link:
+```
+https://docs.docker.com/docker-for-mac/install/
+
+```sh
+# Install Python 3 and pip3
+brew install python3
+
+# Install MariaDB client
+brew install mariadb
+```
+
+### NodeJS LTS using NVM
+
+With nvm, node is installed and used from local user directory and needs no root access.
+Also dev machine may need different node versions for different projects.
+Use nvm to install, manage and switch node versions for development.
+
+```sh
+# Install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+source ~/.bashrc
+
+# Install node lts
+nvm install --lts
+
+# Install yarn
+npm install -g yarn
+```
+
+### Install wkhtmltopdf
+
+```sh
+brew cask install wkhtmltopdf
+```
+
 ## Install Frappe Bench
 
 ```sh
 # install bench python package
 git clone https://github.com/frappe/bench ~/.bench
-pip3 install --user -e ~/.bench
-
-# set local path for user. (needed for vanilla ubuntu 18.04 LTS)
-echo -e "export PATH=\$HOME/.local/bin:\$PATH" >> ~/.bashrc
-source ~/.bashrc
+pip3 install -e ~/.bench
 ```
 
 # Use frappe bench with dockerized backing service
