@@ -101,20 +101,28 @@ brew cask install wkhtmltopdf
 ## Install Frappe Bench
 
 ```sh
+# create a frappe development folder and install virtual environment
+pip3 install virtualenvwrapper 
+
+mkdir frappe-development
+cd frappe-development
+virtualenv env --python=python3
+source ./env/bin/activate
+
 # install bench python package
-git clone https://github.com/frappe/bench ~/.bench
-pip3 install -e ~/.bench
+git clone https://github.com/frappe/bench .bench
+pip3 install -e ./.bench
 ```
 
 # Use frappe bench with dockerized backing service
 
-## Create first frappe-bench
+## Create first frappe-bench (assuing the name is frappe-bench-dev)
 
 ```sh
 bench init \
     --python python3 \
     --skip-redis-config-generation \
-    frappe-bench-01
+    frappe-bench-dev
 ```
 
 ## Start docker based services
