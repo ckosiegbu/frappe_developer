@@ -83,7 +83,8 @@ Use nvm to install, manage and switch node versions for development.
 ```sh
 # Install nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
-source ~/.bashrc
+source ~/.zshrc
+# If using bash use 'source ~/.bashrc'
 
 # Install node lts
 nvm install --lts
@@ -104,8 +105,7 @@ brew cask install wkhtmltopdf
 # create a frappe development folder and install virtual environment
 pip3 install virtualenvwrapper 
 
-mkdir frappe-development
-cd frappe-development
+mkdir frappe-projects && cd frappe-projects
 virtualenv env --python=python3
 source ./env/bin/activate
 
@@ -130,7 +130,7 @@ bench init \
 ```sh
 # Clone repo with docker-compose.yml
 cd $HOME
-git clone https://github.com/ckosiegbu/frappe_developer/frappe_developer.git && cd frappe_developer
+git clone https://github.com/ckosiegbu/frappe_developer.git && cd frappe_developer
 
 # Copy example .env
 cp env-example .env
@@ -141,7 +141,7 @@ docker-compose --project-name bench up
 
 ## Setup bench for using docker services
 
-Note: execute command from bench directory e.g. `frappe-bench-01`
+Note: execute command from bench directory e.g. `frappe-bench-dev`
 
 ```sh
 # For dockerized mariadb
@@ -154,7 +154,7 @@ bench config set-common-config --config developer_mode 1
 # bench setup procfile
 
 # To use Dockerized redis, comment first 3 redis lines of Procfile
-sed -i '1,3 s/^/#/' Procfile
+sed -i '' '1,3 s/^/#/' Procfile
 ```
 
 ## Start the bench
