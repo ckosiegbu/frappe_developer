@@ -61,7 +61,7 @@ git clone https://github.com/frappe/bench .bench
 pip3 install -e ./.bench
 ```
 
-# Use frappe bench with dockerized backing service
+# Use frappe bench
 
 ## Create first frappe-bench (assuing the name is frappe-bench-dev)
 
