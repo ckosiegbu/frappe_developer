@@ -63,7 +63,7 @@ pip3 install -e ./.bench
 
 # Use frappe bench
 
-## Create first frappe-bench (e.g. frappe-bench-dev as a dedicated bench for development)
+## Create first frappe-bench (e.g. 'frappe-bench-dev')
 
 ```sh
 bench init \
