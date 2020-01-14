@@ -63,7 +63,7 @@ pip3 install -e ./.bench
 
 # Use frappe bench
 
-## Create first frappe-bench (assuing the name is frappe-bench-dev)
+## Create first frappe-bench (e.g. frappe-bench-dev as a dedicated bench for development)
 
 ```sh
 bench init \
@@ -73,7 +73,7 @@ bench init \
 
 ## Setup bench for using docker services
 
-Note: execute command from bench directory e.g. `frappe-bench-dev`
+Note: execute command from bench directory e.g. `frappe-bench-dev` 
 
 ```sh
 # For mariadb
@@ -87,6 +87,9 @@ bench config set-common-config --config developer_mode 1
 
 # Create first site on bench (you can name this anything you like)
 bench new-site default.local
+
+# Set the active site to the one you've created
+bench use default.local
 ```
 
 ## Start the bench
