@@ -1,0 +1,24 @@
+Install Steps
+
+mkdir frappe-developments && cd frappe-developments
+virtualenv env --python=python3
+source ./env/bin/activate
+git clone https://github.com/frappe/bench .bench
+cd frappe-bench
+git checkout tags/v4.1
+cd ..
+pip3 install -e ./.bench
+bench init --python python3 --frappe-branch v12.5.0 frappe-bench
+
+open a different terminal and do: 
+cd frappe-bench
+bench start
+
+go back to the original termial and do:
+bench new-site <site>
+bench use <site>
+
+/* Optional */
+to switch frappe version to <new_version> do:
+bench switch-to-branch <new_version> frappe
+bench update --patch
