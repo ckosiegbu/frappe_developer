@@ -1,3 +1,5 @@
+# Installation Steps
+
 mkdir frappe-developments && cd frappe-developments
 virtualenv env --python=python3
 source ./env/bin/activate
@@ -22,3 +24,9 @@ bench use <site>
 to switch frappe version to <new_version> do:
 bench switch-to-branch <new_version> frappe
 bench update --patch
+
+# To start bench after closing terminal
+cd frappe-developments
+source ./env/bin/activate
+cd frappe-bench
+bench start
