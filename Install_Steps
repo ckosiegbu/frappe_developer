@@ -1,5 +1,3 @@
-Install Steps
-
 mkdir frappe-developments && cd frappe-developments
 virtualenv env --python=python3
 source ./env/bin/activate
@@ -10,15 +8,17 @@ cd ..
 pip3 install -e ./.bench
 bench init --python python3 --frappe-branch v12.5.0 frappe-bench
 
-open a different terminal and do: 
+# open a different terminal and do: 
 cd frappe-bench
 bench start
 
-go back to the original termial and do:
+# go back to the original termial and do:
+bench config set-common-config --config db_host localhost
+bench config set-common-config --config developer_mode 1
 bench new-site <site>
 bench use <site>
 
-/* Optional */
+# Optional
 to switch frappe version to <new_version> do:
 bench switch-to-branch <new_version> frappe
 bench update --patch
